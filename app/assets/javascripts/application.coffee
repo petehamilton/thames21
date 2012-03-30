@@ -22,22 +22,22 @@ setupFacebox = ->
     e.addClass('content')
   )
 
-EMG.fit_zoom = ->
+T21.fit_zoom = ->
   bounds = new google.maps.LatLngBounds()
-  for location in EMG.locations
+  for location in T21.locations
     loc = location.getLocation()
     latlng = new google.maps.LatLng(loc.lat, loc.lon)
     bounds.extend (latlng)
-  EMG.map.fitBounds(bounds)
+  T21.map.fitBounds(bounds)
 
-EMG.loadTreasures = (map = EMG.map, sort = "none") ->
-  for l in EMG.locations
+T21.loadTreasures = (map = T21.map, sort = "none") ->
+  for l in T21.locations
     l.remove()
-  EMG.locations = []
+  T21.locations = []
   return getTreasureJSON(parseTreasureJSON, map, sort)
 
-getTreasureJSON = (afterFunction, map = EMG.map, sort) ->
-  location = EMG.geoLocationHandler.getLocation()
+getTreasureJSON = (afterFunction, map = T21.map, sort) ->
+  location = T21.geoLocationHandler.getLocation()
   $.ajax '/treasures',
     type: 'GET'
     dataType: 'json'
@@ -51,12 +51,12 @@ getTreasureJSON = (afterFunction, map = EMG.map, sort) ->
       afterFunction(data, map)
       return true
 
-parseTreasureJSON = (treasureJsonObjects, map = EMG.map) ->
-  placer = new EMG.LocationPlacer()
+parseTreasureJSON = (treasureJsonObjects, map = T21.map) ->
+  placer = new T21.LocationPlacer()
   for treasureJsonObject in treasureJsonObjects
-    treasure = new EMG.Location(treasureJsonObject)
+    treasure = new T21.Location(treasureJsonObject)
     placer.placeTreasureOnMap(map, treasure)
-  EMG.fit_zoom()
+  T21.fit_zoom()
 
 resizeContentToWindow = ->
   $('#main').height($(window).height() - 80)
@@ -65,15 +65,15 @@ bindFilterButtons = ->
   $('#treasure_filter_button_distance').bind 'click', (event) =>
     $('.treasure_filter_button').removeClass('active')
     $('#treasure_filter_button_distance').addClass('active')
-    EMG.loadTreasures(EMG.map)
+    T21.loadTreasures(T21.map)
   $('#treasure_filter_button_agony').bind 'click', (event) =>
     $('.treasure_filter_button').removeClass('active')
     $('#treasure_filter_button_agony').addClass('active')
-    EMG.loadTreasures(EMG.map, 'agony')
+    T21.loadTreasures(T21.map, 'agony')
   $('#treasure_filter_button_wait').bind 'click', (event) =>
     $('.treasure_filter_button').removeClass('active')
     $('#treasure_filter_button_wait').addClass('active')
-    EMG.loadTreasures(EMG.map, 'wait')
+    T21.loadTreasures(T21.map, 'wait')
 
 $(document).ready ->  
   resizeContentToWindow()
@@ -88,12 +88,12 @@ $(document).ready ->
     zoom: 6
     mapTypeId: google.maps.MapTypeId.ROADMAP
   
-  EMG.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  T21.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
   
-  EMG.geoLocationHandler = new EMG.GeolocationHandler()
-  EMG.geoLocationHandler.locateUser()
-  location = EMG.geoLocationHandler.getLocation()
-  EMG.map.setCenter (new google.maps.LatLng(location.lat,location.lon))
+  T21.geoLocationHandler = new T21.GeolocationHandler()
+  T21.geoLocationHandler.locateUser()
+  location = T21.geoLocationHandler.getLocation()
+  T21.map.setCenter (new google.maps.LatLng(location.lat,location.lon))
   
-  if !EMG.loadTreasures()
+  if !T21.loadTreasures()
     log "Failed to load treasure data"

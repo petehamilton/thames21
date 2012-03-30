@@ -1,7 +1,7 @@
-@module "EMG", ->
+@module "T21", ->
     class @LocationPlacer
       placeTreasureOnMap: (map, location) ->
-        @handler = new EMG.LocationHandler()
+        @handler = new T21.LocationHandler()
         latlon = location.getLocation()
 
         marker = new google.maps.Marker(
@@ -15,10 +15,10 @@
         location.setMarker(marker)
         location.setListElement(listElement)
         location.paintToSidebar()
-        EMG.locations.push(location)
+        T21.locations.push(location)
 
         # Add a callback to call the highlight method on the
-        # location object (pushed to the EMG.locations above).
+        # location object (pushed to the T21.locations above).
         # This is how we're going to highlight the item in the
         # list.
         google.maps.event.addListener marker, 'click', () =>

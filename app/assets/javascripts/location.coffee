@@ -1,4 +1,4 @@
-@module "EMG", ->
+@module "T21", ->
   class @Location
     constructor: (json) ->
       @lat = json.latitude
@@ -64,7 +64,7 @@
       return @hashcode
 
     highlight: ->
-      @infowindow.open(EMG.map,@marker)
+      @infowindow.open(T21.map,@marker)
       @listElement.addClass("highlighted")
     
     removeHighlight: ->

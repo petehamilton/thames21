@@ -7,6 +7,6 @@
   else
     fn.call space
 
-@module "EMG", ->
+@module "T21", ->
   @locations = []
   @map = undefined
