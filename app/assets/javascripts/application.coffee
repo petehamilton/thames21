@@ -3,14 +3,9 @@
 #= require rails
 #= require log_plugin
 #= require dotimeout_plugin
-#= require jspostcode
 #= require facebox
 
 #= require _helpers
-#= require geolocation_handler
-#= require location
-#= require location_handler
-#= require location_placer
 
 setupFacebox = ->
   $.facebox.settings.closeImage = '/assets/facebox/closelabel.png'
@@ -31,19 +26,15 @@ T21.fit_zoom = ->
   T21.map.fitBounds(bounds)
 
 T21.loadTreasures = (map = T21.map, sort = "none") ->
-  for l in T21.locations
-    l.remove()
-  T21.locations = []
-  return getTreasureJSON(parseTreasureJSON, map, sort)
+  return T21.getTreasureJSON(T21.parseTreasureJSON, map, sort)
 
-getTreasureJSON = (afterFunction, map = T21.map, sort) ->
-  location = T21.geoLocationHandler.getLocation()
+T21.getTreasureJSON = (afterFunction, map = T21.map, sort = "none") ->
   $.ajax '/treasures',
     type: 'GET'
     dataType: 'json'
     data:
-      lat: location.lat
-      lon: location.lon
+      lat: T21.location.lat()
+      lon: T21.location.lng()
       sort: sort
     error: (jqXHR, textStatus, errorThrown) ->
       return false
@@ -51,49 +42,34 @@ getTreasureJSON = (afterFunction, map = T21.map, sort) ->
       afterFunction(data, map)
       return true
 
-parseTreasureJSON = (treasureJsonObjects, map = T21.map) ->
-  placer = new T21.LocationPlacer()
+T21.parseTreasureJSON = (treasureJsonObjects, map = T21.map) ->
   for treasureJsonObject in treasureJsonObjects
-    treasure = new T21.Location(treasureJsonObject)
-    placer.placeTreasureOnMap(map, treasure)
-  T21.fit_zoom()
+    log treasureJsonObject
+  #   treasure = new T21.Location(treasureJsonObject)
+  #   placer.placeTreasureOnMap(map, treasure)
+  # T21.fit_zoom()
 
 resizeContentToWindow = ->
   $('#main').height($(window).height() - 80)
 
-bindFilterButtons = ->
-  $('#treasure_filter_button_distance').bind 'click', (event) =>
-    $('.treasure_filter_button').removeClass('active')
-    $('#treasure_filter_button_distance').addClass('active')
-    T21.loadTreasures(T21.map)
-  $('#treasure_filter_button_agony').bind 'click', (event) =>
-    $('.treasure_filter_button').removeClass('active')
-    $('#treasure_filter_button_agony').addClass('active')
-    T21.loadTreasures(T21.map, 'agony')
-  $('#treasure_filter_button_wait').bind 'click', (event) =>
-    $('.treasure_filter_button').removeClass('active')
-    $('#treasure_filter_button_wait').addClass('active')
-    T21.loadTreasures(T21.map, 'wait')
+setupGoogleMap = ->
+  central_london = new google.maps.LatLng(51.485766, -0.136814)
+  T21.location = central_london
 
-$(document).ready ->  
+  opts =
+    zoom: 13
+    center: T21.location
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+
+  T21.map = new google.maps.Map(document.getElementById("map_canvas"), opts);
+
+  google.maps.event.addListener T21.map, 'center_changed', () ->
+    T21.location = T21.map.getCenter()
+    log T21.location.lat(), T21.location.lng()
+    T21.loadTreasures()
+
+$(document).ready ->
   resizeContentToWindow()
   $(window).resize resizeContentToWindow
-  
   setupFacebox()
-  
-  bindFilterButtons();
-
-  # Temp map stuff
-  myOptions =
-    zoom: 6
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  
-  T21.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  
-  T21.geoLocationHandler = new T21.GeolocationHandler()
-  T21.geoLocationHandler.locateUser()
-  location = T21.geoLocationHandler.getLocation()
-  T21.map.setCenter (new google.maps.LatLng(location.lat,location.lon))
-  
-  if !T21.loadTreasures()
-    log "Failed to load treasure data"
+  setupGoogleMap()
