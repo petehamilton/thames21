@@ -43,26 +43,31 @@ T21.getTreasureJSON = (afterFunction, map = T21.map, sort = "none") ->
       return true
 
 T21.parseTreasureJSON = (treasureJsonObjects, map = T21.map) ->
-  T21.treasure_markers = []
+  T21.markers = []
+  T21.info_windows = []
   for treasureJsonObject in treasureJsonObjects
     # log treasureJsonObject
     # log "Adding at ", treasureJsonObject.lat, treasureJsonObject.lng
 
     treasure_pos = new google.maps.LatLng(treasureJsonObject.lat, treasureJsonObject.lng);
-    log T21.location.lat(), T21.location.lng(), treasure_pos.lat(), treasure_pos.lng()
+    # log T21.location.lat(), T21.location.lng(), treasure_pos.lat(), treasure_pos.lng()
     marker = new google.maps.Marker
       map: T21.map,
       draggable: false,
       animation: google.maps.Animation.DROP,
       position: treasure_pos
+      html: '<h1>' + treasureJsonObject.name + '</h1><p>' + treasureJsonObject.description + '</p>';
 
-    T21.treasure_markers.push marker
+    infowindow = new google.maps.InfoWindow
 
-  marker = new google.maps.Marker
-    map: T21.map,
-    draggable: false,
-    animation: google.maps.Animation.DROP,
-    position: T21.location
+    # T21.markers.push marker
+    # log T21.markers[T21.markers.length - 1]
+    # T21.info_windows.push infowindow
+    # log T21.info_windows[T21.info_windows.length - 1]
+
+    google.maps.event.addListener marker, 'click', () ->
+      infowindow.setContent(this.html);
+      infowindow.open(T21.map, this);
 
 resizeContentToWindow = ->
   $('#main').height($(window).height() - 80)

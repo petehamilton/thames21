@@ -6,7 +6,7 @@ class Treasure < ActiveRecord::Base
     if options[:mobile]
       return super(:only => [:odscode], :methods => [:delay])
     end
-    j = super(:only => [:odscode, :postcode, :name, :lng, :lat, :distance],
+    j = super(:only => [:odscode, :postcode, :name, :lng, :lat, :distance, :description],
           :methods => [:delay, :last_updated_at])
     j[:distance] = "%.f" % (self.distance || 0)
     return j
