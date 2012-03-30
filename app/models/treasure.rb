@@ -45,7 +45,7 @@ class Treasure < ActiveRecord::Base
   # Max distance must be provided in meter
   def self.find_treasures_near_latlon(lat, lon, max_distance=500000, max_results=20)
     # For perfomance reasons use the equirectangular based approximation.
-    # 
+    #
     # Its fast and accurate for small distances
 
     earth_radius = 6371000.0
@@ -54,7 +54,7 @@ class Treasure < ActiveRecord::Base
 
     treasures = Treasure.select('*').limit(max_results).order("( (#{c2.to_f} * (latitude - #{lat.to_f}))*(#{c2.to_f} * (latitude - #{lat.to_f})) + (#{c1.to_f} * (longitude - #{lon.to_f}))*(#{c1.to_f} * (longitude - #{lon.to_f})) )").includes(:delays)
 
-    # Precompute the distance for these treasures 
+    # Precompute the distance for these treasures
     treasures_dist = []
     treasures.each do |treasure|
       treasure.distance = treasure.compute_distance(lat, lon)
