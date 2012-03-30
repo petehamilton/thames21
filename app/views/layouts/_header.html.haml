@@ -3,17 +3,5 @@
   .title
     e-mergency
   .header_desc
-    Find out the waiting time of hospitals near you. 
-  - if current_user
-    .header_buttons
-      .header_text
-        %p= "Welcome #{current_user.email}!" 
-      = button_group do
-        - if current_user.roles.length>0 and (current_user.roles[0].name == 'hospital' or current_user.roles[0].name == 'admin' ) and not current_user.hospital.nil?
-          = button_link_to "Update waiting time for #{current_user.hospital.name}", new_hospital_delay_path(current_user.hospital) 
-        - if current_user.roles.length>0 and current_user.roles[0].name == 'admin'
-          = button_link_to "Administration", user_registration_path 
-        = button_link_to 'Sign out', destroy_user_session_path, :method => :delete
-  - else
-    .header_buttons
-      = button_link_to 'Sign in', new_user_session_path
+    Find out the waiting time of hospitals near you.
+  .header_buttons

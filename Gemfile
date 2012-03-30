@@ -19,6 +19,7 @@ gem 'rails', '~> 3.1'
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
+gem 'sqlite3'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
@@ -27,14 +28,14 @@ gem 'rails', '~> 3.1'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'sqlite3'
-  
+
   # RSpec
-  gem "rspec", "~> 2.6"
-  gem "rspec-rails", "~> 2.6"
+  # gem "rspec", "~> 2.6"
+  # gem "rspec-rails", "~> 2.6"
 
   # Cucmber
-  gem "cucumber", "~> 1.0"
-  gem "cucumber-rails", "~> 1.0"
+  # gem "cucumber", "~> 1.0"
+  # gem "cucumber-rails", "~> 1.0"
   gem "database_cleaner"
 
   gem "jasmine", "~> 1"
@@ -42,18 +43,15 @@ group :development, :test do
 
   gem "heroku"
 
-  gem "guard"
-  gem "guard-coffeescript"
+  # gem "guard"
+  # gem "guard-coffeescript"
 end
 
-gem 'googlecharts'
+# gem 'googlecharts'
 
 # Use JQuery not prototype
 gem 'jquery-rails'
 
-# Gems required for user authentication
-gem 'devise'
-gem 'cancan'
 gem 'css3buttons'
 
 # Make web-editing smoother
@@ -62,8 +60,5 @@ gem 'sass'
 gem 'coffee-script'
 gem 'uglifier'
 
-# heroku db related
-gem 'pg'
-
 # This is our JS executor if we don't have Node.js or similar
-gem 'therubyracer-heroku', '0.8.1.pre3'
+# gem 'therubyracer-heroku', '0.8.1.pre3'
