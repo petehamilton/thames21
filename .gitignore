@@ -1,0 +1,29 @@
+# Rails specific
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+.#*
+/#*#
+
+# Mac OS X Finder
+.DS_Store
+
+# Ignore css files and sass temp files
+*.css
+.sass-cache/
+
+# Guard compile points
+public/javascripts/compiled
+spec/javascripts/compiled

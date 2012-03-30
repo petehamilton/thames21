@@ -1,0 +1,17 @@
+# src_files
+src_dir: public/javascripts/
+src_files:
+  - compiled/*.js
+
+# spec_dir
+spec_dir: spec/javascripts/
+spec_files:
+  - compiled/*.js
+
+# stylesheets
+stylesheets:
+  - stylesheets/**/*.css
+
+# helpers
+helpers:
+  - helpers/**/*.js

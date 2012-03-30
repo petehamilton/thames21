@@ -1,0 +1,29 @@
+#user_wide
+  %h2 Registerd users
+
+  %table
+
+    %tr
+      %th Email
+      %th Associated hospital
+      %th Role
+      %th Delay
+
+    - @users.each do |user|
+      %tr
+        %td
+          = user.email
+        %td
+          - if user.hospital.nil?
+            No hospital assigned
+          - else
+            = user.hospital.name
+          = link_to  "(Change)", edit_hospital_user_path(user.id)
+        %td
+          - user.roles.each do |role|
+            = role.name
+            = link_to "(Change)", edit_role_user_path(user.id)
+        %td
+          - if not user.hospital.nil?
+            = link_to  "New", new_hospital_delay_path(user.hospital.id)
+

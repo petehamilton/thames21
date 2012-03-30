@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+guest_role:
+  name: guest 
+
+hospital_role:
+  name: hospital 
+
+admin_role:
+  name: admin

@@ -1,0 +1,11 @@
+%h1
+  Welcome #{@user.email}
+Assigned hospital:
+- if @user.hospital.nil?
+  None
+- else
+  = @user.hospital.name
+  %br/
+  = link_to "Show current delay times", hospital_delays_path(@user.hospital)
+  %br/
+  = link_to "Update hospital delay", new_hospital_delay_path(@user.hospital)

@@ -1,0 +1,48 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+#                 x Peters hospital
+#                 |
+#                 | 5km
+#              1km|     5km
+#             x---x ---------- x Florians hospital
+# Kates hosptial  | simons hospital
+#                 |
+#                 |
+#                 | 10km
+#                 |
+#                 |
+#                 x Kushals hosptial
+#
+# The position is taken from the "Abbey Gisburne Park Hospital"
+one: 
+  name: Simons Hospital
+  longitude: -2.2680899081386 
+  latitude:  53.9431092443469
+
+# This hospital is 5km north of Simons hospital
+two: 
+  name: Peters Hospital
+  longitude: -2.2680899081386 
+  latitude: 53.9880753
+
+# This hospital is 5km east of Simons hospital
+three: 
+  name: Florians Hospital
+  longitude: -2.19192383
+  latitude: 53.9431092443469
+
+# This hospital is 1km west of Simons hospital
+four: 
+  name: Kates Hospital
+  longitude: -2.28327634 
+  latitude: 53.9431092443469 
+
+# This hospital is 10km south of Simons hospital
+five: 
+  name: Kushals Hospital
+  longitude: -2.2680899081386
+  latitude: 53.8531771

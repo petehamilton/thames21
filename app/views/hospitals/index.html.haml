@@ -1,0 +1,33 @@
+#user_wide
+  %h2 Hospitals
+
+  %table
+
+    %tr
+      %th odscode
+      %th Name
+      %th Postcode
+      %th Latitude
+      %th Longitude
+      %th Distance
+      %th Delay
+      %th Updated
+
+    - @hospitals.each do |h|
+      %tr
+        %td
+          = h.odscode
+        %td
+          = h.name
+        %td
+          = h.postcode
+        %td
+          = "%.4f" % h.latitude
+        %td
+          = "%.4f" % h.longitude
+        %td
+          = "%.fm" % h.distance
+        %td
+          = h.delay
+        %td
+          = h.last_updated_at
