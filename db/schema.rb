@@ -14,10 +14,11 @@
 ActiveRecord::Schema.define(:version => 20110814091229) do
 
   create_table "treasures", :force => true do |t|
-    t.text     "title"
+    t.text     "name"
     t.text     "description"
-    t.float    "longitude"
-    t.float    "latitude"
+    t.text     "hyperlink"
+    t.float    "lat"
+    t.float    "lng"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

@@ -1,10 +1,11 @@
 class CreateTreasures < ActiveRecord::Migration
   def self.up
     create_table :treasures do |t|
-      t.text :title
+      t.text :name
       t.text :description
-      t.float :longitude
-      t.float :latitude
+      t.text :hyperlink
+      t.float :lat
+      t.float :lng
 
       t.timestamps
     end

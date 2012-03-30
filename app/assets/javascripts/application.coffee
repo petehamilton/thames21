@@ -43,11 +43,26 @@ T21.getTreasureJSON = (afterFunction, map = T21.map, sort = "none") ->
       return true
 
 T21.parseTreasureJSON = (treasureJsonObjects, map = T21.map) ->
+  T21.treasure_markers = []
   for treasureJsonObject in treasureJsonObjects
-    log treasureJsonObject
-  #   treasure = new T21.Location(treasureJsonObject)
-  #   placer.placeTreasureOnMap(map, treasure)
-  # T21.fit_zoom()
+    # log treasureJsonObject
+    # log "Adding at ", treasureJsonObject.lat, treasureJsonObject.lng
+
+    treasure_pos = new google.maps.LatLng(treasureJsonObject.lat, treasureJsonObject.lng);
+    log T21.location.lat(), T21.location.lng(), treasure_pos.lat(), treasure_pos.lng()
+    marker = new google.maps.Marker
+      map: T21.map,
+      draggable: false,
+      animation: google.maps.Animation.DROP,
+      position: treasure_pos
+
+    T21.treasure_markers.push marker
+
+  marker = new google.maps.Marker
+    map: T21.map,
+    draggable: false,
+    animation: google.maps.Animation.DROP,
+    position: T21.location
 
 resizeContentToWindow = ->
   $('#main').height($(window).height() - 80)
@@ -65,11 +80,16 @@ setupGoogleMap = ->
 
   google.maps.event.addListener T21.map, 'center_changed', () ->
     T21.location = T21.map.getCenter()
-    log T21.location.lat(), T21.location.lng()
-    T21.loadTreasures()
+  #   # log T21.location.lat(), T21.location.lng()
+  #
+  #   $.doTimeout 't21_treasures_load', 1000, () ->
+  #     alert "Should have loaded once"
+  #     T21.loadTreasures()
 
 $(document).ready ->
   resizeContentToWindow()
   $(window).resize resizeContentToWindow
   setupFacebox()
   setupGoogleMap()
+  T21.location = T21.map.getCenter()
+  T21.loadTreasures()
