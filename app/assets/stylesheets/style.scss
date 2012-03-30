@@ -65,7 +65,7 @@ body, select, input, textarea {
     border-bottom-color: #9A9A9A;
     background: url(../assets/button_bg.png) repeat-x left top;
     float: left;
-    
+
     &.positive{
         color: white;
         background-image: url(../assets/button_bg_green.gif);
@@ -91,11 +91,12 @@ body, select, input, textarea {
 }
 
 .header_desc{
-  font-size: 24px;
-  float:center;
-  padding-top: 45px;
+  font-size: 44px;
+  float: center;
+  padding-top: 15px;
   width: 928px;
   margin: auto;
+  color: white;
 }
 
 .header_buttons{
@@ -104,7 +105,7 @@ body, select, input, textarea {
 }
 
 .header_text{
-  color: hsla(0, 0%, 95%, .85); 
+  color: hsla(0, 0%, 95%, .85);
   font-size: 16px;
   padding: 5px;
   padding: 5px;
@@ -119,7 +120,7 @@ body, select, input, textarea {
         margin-right: 5px;
         border: 1px solid #EEE;
         cursor: pointer;
-        
+
         &:hover{
             background: hsla(207, 45%, 55%, 1);
             color: #FFF;
@@ -144,7 +145,7 @@ body, select, input, textarea {
         border-bottom: 1px #E5E5E5 solid;
         padding: 15px;
         cursor: pointer;
-        
+
         &.highlighted{
             background-color: #99D6FF;
         }
@@ -234,14 +235,14 @@ body, select, input, textarea {
     }
     #new_delay{
         margin-bottom: 15px;
-        
+
         .errors{
             padding: 10px;
             list-style-type:none;
             margin: 0px;
             margin-bottom: 10px;
         }
-        
+
         #current_waiting_time_container{
             float:left;
             border-right: 2px solid #EEE;
@@ -249,7 +250,7 @@ body, select, input, textarea {
             height: 40px;
             padding-right: 15px;
             width: 360px;
-            
+
             #current_waiting_time{
                 float:right;
                 padding-top: 8px;
@@ -266,17 +267,17 @@ body, select, input, textarea {
 
             }
         }
-        
+
         #update_waiting_time_container{
             float:left;
             display: block;
             height: 40px;
             padding-left: 15px;
             width: 200px;
-            
+
             #update_waiting_time{
                 float:left;
-                
+
                 #delay_submit{
                     padding: 0px;
                     margin: 0px;
