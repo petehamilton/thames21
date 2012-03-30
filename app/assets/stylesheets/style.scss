@@ -20,6 +20,13 @@ body, select, input, textarea {
     font-weight: 300;
 }
 
+a {
+  color: #006BB7;
+  &:active{
+    color: #006BB7;
+  }
+}
+
 .clear{clear:both}
 
 /* Fluid Layout */
