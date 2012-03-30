@@ -2,8 +2,8 @@
 guest_role:
   name: guest 
 
-hospital_role:
-  name: hospital 
+treasure_role:
+  name: treasure 
 
 admin_role:
   name: admin

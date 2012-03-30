@@ -30,15 +30,15 @@ EMG.fit_zoom = ->
     bounds.extend (latlng)
   EMG.map.fitBounds(bounds)
 
-EMG.loadHospitals = (map = EMG.map, sort = "none") ->
+EMG.loadTreasures = (map = EMG.map, sort = "none") ->
   for l in EMG.locations
     l.remove()
   EMG.locations = []
-  return getHospitalJSON(parseHospitalJSON, map, sort)
+  return getTreasureJSON(parseTreasureJSON, map, sort)
 
-getHospitalJSON = (afterFunction, map = EMG.map, sort) ->
+getTreasureJSON = (afterFunction, map = EMG.map, sort) ->
   location = EMG.geoLocationHandler.getLocation()
-  $.ajax '/hospitals',
+  $.ajax '/treasures',
     type: 'GET'
     dataType: 'json'
     data:
@@ -51,29 +51,29 @@ getHospitalJSON = (afterFunction, map = EMG.map, sort) ->
       afterFunction(data, map)
       return true
 
-parseHospitalJSON = (hospitalJsonObjects, map = EMG.map) ->
+parseTreasureJSON = (treasureJsonObjects, map = EMG.map) ->
   placer = new EMG.LocationPlacer()
-  for hospitalJsonObject in hospitalJsonObjects
-    hospital = new EMG.Location(hospitalJsonObject)
-    placer.placeHospitalOnMap(map, hospital)
+  for treasureJsonObject in treasureJsonObjects
+    treasure = new EMG.Location(treasureJsonObject)
+    placer.placeTreasureOnMap(map, treasure)
   EMG.fit_zoom()
 
 resizeContentToWindow = ->
   $('#main').height($(window).height() - 80)
 
 bindFilterButtons = ->
-  $('#hospital_filter_button_distance').bind 'click', (event) =>
-    $('.hospital_filter_button').removeClass('active')
-    $('#hospital_filter_button_distance').addClass('active')
-    EMG.loadHospitals(EMG.map)
-  $('#hospital_filter_button_agony').bind 'click', (event) =>
-    $('.hospital_filter_button').removeClass('active')
-    $('#hospital_filter_button_agony').addClass('active')
-    EMG.loadHospitals(EMG.map, 'agony')
-  $('#hospital_filter_button_wait').bind 'click', (event) =>
-    $('.hospital_filter_button').removeClass('active')
-    $('#hospital_filter_button_wait').addClass('active')
-    EMG.loadHospitals(EMG.map, 'wait')
+  $('#treasure_filter_button_distance').bind 'click', (event) =>
+    $('.treasure_filter_button').removeClass('active')
+    $('#treasure_filter_button_distance').addClass('active')
+    EMG.loadTreasures(EMG.map)
+  $('#treasure_filter_button_agony').bind 'click', (event) =>
+    $('.treasure_filter_button').removeClass('active')
+    $('#treasure_filter_button_agony').addClass('active')
+    EMG.loadTreasures(EMG.map, 'agony')
+  $('#treasure_filter_button_wait').bind 'click', (event) =>
+    $('.treasure_filter_button').removeClass('active')
+    $('#treasure_filter_button_wait').addClass('active')
+    EMG.loadTreasures(EMG.map, 'wait')
 
 $(document).ready ->  
   resizeContentToWindow()
@@ -95,5 +95,5 @@ $(document).ready ->
   location = EMG.geoLocationHandler.getLocation()
   EMG.map.setCenter (new google.maps.LatLng(location.lat,location.lon))
   
-  if !EMG.loadHospitals()
-    log "Failed to load hospital data"
+  if !EMG.loadTreasures()
+    log "Failed to load treasure data"

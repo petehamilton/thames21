@@ -4,9 +4,9 @@ class Ability
   def initialize(user)
     if user.role? "admin"
       can :manage, :all
-    else user.role? "hospital"
+    else user.role? "treasure"
       can :manage, Delay
-      can :manage, Hospital, :id => user.hospital_id
+      can :manage, Treasure, :id => user.treasure_id
     end
 
   end

@@ -11,7 +11,7 @@
     locateUser: ->
       if this.browserGeolocationEnabled()
         if this.locationVerified()
-          EMG.loadHospitals()
+          EMG.loadTreasures()
         else
           this.setLocationUsingBrowser()
       else

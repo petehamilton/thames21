@@ -59,8 +59,8 @@ EMergency::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
-  match 'hospitals/by/:sort' => 'hospitals#index'
+  match 'treasures/by/:sort' => 'treasures#index'
 
-  resources :hospitals
+  resources :treasures
 
 end

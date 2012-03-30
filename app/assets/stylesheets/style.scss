@@ -109,9 +109,9 @@ body, select, input, textarea {
   text-align: right;
 }
 
-#hospital_filters{
+#treasure_filters{
     padding: 15px;
-    .hospital_filter_button{
+    .treasure_filter_button{
         float: left;
         padding: 5px;
         margin-right: 5px;
@@ -130,7 +130,7 @@ body, select, input, textarea {
 }
 
 
-#hospital_list{
+#treasure_list{
     margin: 15px;
     border-top: 1px #E5E5E5 solid;
 
@@ -213,8 +213,8 @@ body, select, input, textarea {
     }
 }
 
-/* Hospital Delay Time Updates */
-#hospital_delay_time{
+/* Treasure Delay Time Updates */
+#treasure_delay_time{
     width: 600px;
     margin: 10px auto;
     padding: 15px;

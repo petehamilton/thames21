@@ -9,6 +9,6 @@
 
     # Repaints both the sidebar using the list that we have
     repaintLocationsSidebar: () ->
-      $("ul#hospital_list").empty()
+      $("ul#treasure_list").empty()
       for location in EMG.locations
         location.paintToSidebar()

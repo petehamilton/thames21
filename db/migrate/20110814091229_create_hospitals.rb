@@ -1,6 +1,6 @@
-class CreateHospitals < ActiveRecord::Migration
+class CreateTreasures < ActiveRecord::Migration
   def self.up
-    create_table :hospitals do |t|
+    create_table :treasures do |t|
       t.string :source_uri
       t.string :name
       t.string :index_letter
@@ -31,6 +31,6 @@ class CreateHospitals < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :hospitals
+    drop_table :treasures
   end
 end

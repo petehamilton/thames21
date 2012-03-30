@@ -8,23 +8,23 @@ class DelayTest < ActiveSupport::TestCase
   
   test "validation" do
 
-    delay = Delay.new :minutes => 12, :hospital_id => -1
+    delay = Delay.new :minutes => 12, :treasure_id => -1
     assert !delay.valid?
 
-    hospital = Hospital.new :name => "Test", :longitude => 0.0, :latitude => 0.0
-    hospital.save
+    treasure = Treasure.new :name => "Test", :longitude => 0.0, :latitude => 0.0
+    treasure.save
 
-    delay = Delay.new :minutes => -12, :hospital => hospital 
+    delay = Delay.new :minutes => -12, :treasure => treasure 
     assert !delay.valid?
 
-    delay = Delay.new :minutes => 0, :hospital => hospital 
+    delay = Delay.new :minutes => 0, :treasure => treasure 
     assert delay.save
 
     delay.reload
-    hospital.reload
+    treasure.reload
 
-    assert delay.hospital.id == hospital.id
-    assert hospital.delays.first.id == delay.id
+    assert delay.treasure.id == treasure.id
+    assert treasure.delays.first.id == delay.id
   end
 
 end

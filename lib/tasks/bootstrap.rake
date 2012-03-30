@@ -22,12 +22,12 @@ namespace :bootstrap do
     end
   end
 
-  desc "Imports hospitals from NHS Choices"
-  task :import_hospitals => :environment do
+  desc "Imports treasures from NHS Choices"
+  task :import_treasures => :environment do
     json = JSON.parse(File.read('lib/locations.json'))
     json.each do |j|
       j = j.second
-      Hospital.create( {
+      Treasure.create( {
         'source_uri' => j['apiurl'],
         'name'       => j['name'],
         'updated'    => j['updated'],
@@ -42,6 +42,6 @@ namespace :bootstrap do
   end
 
   desc "Run all bootstrapping tasks"
-  task :all => [:admin_users, :import_hospitals]
+  task :all => [:admin_users, :import_treasures]
 
 end

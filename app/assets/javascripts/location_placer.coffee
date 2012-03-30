@@ -1,6 +1,6 @@
 @module "EMG", ->
     class @LocationPlacer
-      placeHospitalOnMap: (map, location) ->
+      placeTreasureOnMap: (map, location) ->
         @handler = new EMG.LocationHandler()
         latlon = location.getLocation()
 
@@ -10,7 +10,7 @@
             title: "Hello World!"
         )
 
-        listElement = $("<li class='hospital_element' id='" + location.getHashcode() + "'>" + location.getName() + "</li>")
+        listElement = $("<li class='treasure_element' id='" + location.getHashcode() + "'>" + location.getName() + "</li>")
 
         location.setMarker(marker)
         location.setListElement(listElement)

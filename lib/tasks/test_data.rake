@@ -11,9 +11,9 @@ namespace :test_data do
   task :create_delay_time => :environment do
     # Use a transaction to speed up the mass insertion, see http://www.coffeepowered.net/2009/01/23/mass-inserting-data-in-rails-without-killing-your-performance/
     ActiveRecord::Base.transaction do
-      Hospital.all.each do |hospital|
+      Treasure.all.each do |treasure|
         for i in 0..8
-          delay = Delay.new(:hospital => hospital)
+          delay = Delay.new(:treasure => treasure)
           # Change the creation of the delay object to be i days in the past
           delay.created_at = delay.created_at - i.days
           delay.updated_at = delay.created_at

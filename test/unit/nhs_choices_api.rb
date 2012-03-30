@@ -8,36 +8,36 @@ class NHSChoicesAPITest < ActiveSupport::TestCase
     assert_instance_of(NHSChoicesAPI::Scraper, scraper)
   end
 
-  test "grabbing hospital IDs produces an array" do
+  test "grabbing treasure IDs produces an array" do
     scraper = NHSChoicesAPI::Scraper.new
-    ids = scraper.get_hospital_ids
+    ids = scraper.get_treasure_ids
     assert_instance_of(Array, ids)
     assert(ids.include? "1960")
   end
 
-  test "get hospital overview urls" do
+  test "get treasure overview urls" do
     scraper = NHSChoicesAPI::Scraper.new
-    overview_urls = scraper.get_hospital_overview_urls
+    overview_urls = scraper.get_treasure_overview_urls
     assert_instance_of(Hash, overview_urls)
 
     # Checking internal vals like this should be mocked
     assert(overview_urls.include? "71591")
-    assert_equal overview_urls["71591"], "http://v1.syndication.nhschoices.nhs.uk/organisations/hospitals/71591/overview.xml?apikey=NOCRIYLM"
+    assert_equal overview_urls["71591"], "http://v1.syndication.nhschoices.nhs.uk/organisations/treasures/71591/overview.xml?apikey=NOCRIYLM"
   end
 
   test "bad overview input fails" do
     scraper = NHSChoicesAPI::Scraper.new
 
-    assert_nil scraper.get_hospital_overview
-    assert_nil scraper.get_hospital_overview("asdf")
+    assert_nil scraper.get_treasure_overview
+    assert_nil scraper.get_treasure_overview("asdf")
   end
 
   test "get full overview for location 71591" do
     scraper = NHSChoicesAPI::Scraper.new
-    overview = scraper.get_hospital_overview(71591)
+    overview = scraper.get_treasure_overview(71591)
 
     assert_equal 71591, overview['id']
-    assert_equal "http://v1.syndication.nhschoices.nhs.uk/organisations/hospitals/71591/overview.xml?apikey=NOCRIYLM", overview['apiurl']
+    assert_equal "http://v1.syndication.nhschoices.nhs.uk/organisations/treasures/71591/overview.xml?apikey=NOCRIYLM", overview['apiurl']
     assert_equal 'Huddersfield Medical Services HQ', overview['name']
     assert_equal 'NL401', overview['odscode']
     assert_equal 'HD7 5AB', overview['postcode']

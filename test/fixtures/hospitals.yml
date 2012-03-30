@@ -4,12 +4,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-#                 x Peters hospital
+#                 x Peters treasure
 #                 |
 #                 | 5km
 #              1km|     5km
-#             x---x ---------- x Florians hospital
-# Kates hosptial  | simons hospital
+#             x---x ---------- x Florians treasure
+# Kates hosptial  | simons treasure
 #                 |
 #                 |
 #                 | 10km
@@ -17,32 +17,32 @@
 #                 |
 #                 x Kushals hosptial
 #
-# The position is taken from the "Abbey Gisburne Park Hospital"
+# The position is taken from the "Abbey Gisburne Park Treasure"
 one: 
-  name: Simons Hospital
+  name: Simons Treasure
   longitude: -2.2680899081386 
   latitude:  53.9431092443469
 
-# This hospital is 5km north of Simons hospital
+# This treasure is 5km north of Simons treasure
 two: 
-  name: Peters Hospital
+  name: Peters Treasure
   longitude: -2.2680899081386 
   latitude: 53.9880753
 
-# This hospital is 5km east of Simons hospital
+# This treasure is 5km east of Simons treasure
 three: 
-  name: Florians Hospital
+  name: Florians Treasure
   longitude: -2.19192383
   latitude: 53.9431092443469
 
-# This hospital is 1km west of Simons hospital
+# This treasure is 1km west of Simons treasure
 four: 
-  name: Kates Hospital
+  name: Kates Treasure
   longitude: -2.28327634 
   latitude: 53.9431092443469 
 
-# This hospital is 10km south of Simons hospital
+# This treasure is 10km south of Simons treasure
 five: 
-  name: Kushals Hospital
+  name: Kushals Treasure
   longitude: -2.2680899081386
   latitude: 53.8531771

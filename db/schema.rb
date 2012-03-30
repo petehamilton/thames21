@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20110814091229) do
 
-  create_table "hospitals", :force => true do |t|
+  create_table "treasures", :force => true do |t|
     t.string   "source_uri"
     t.string   "name"
     t.string   "index_letter"

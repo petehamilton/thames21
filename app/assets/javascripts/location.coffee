@@ -40,7 +40,7 @@
       @listElement = le
     
     paintToSidebar: ->
-      $("ul#hospital_list").append(@listElement)
+      $("ul#treasure_list").append(@listElement)
 
     clearMarker: ->
       @marker.setMap(null)
