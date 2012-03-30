@@ -51,12 +51,22 @@ T21.parseTreasureJSON = (treasureJsonObjects, map = T21.map) ->
 
     treasure_pos = new google.maps.LatLng(treasureJsonObject.lat, treasureJsonObject.lng);
     # log T21.location.lat(), T21.location.lng(), treasure_pos.lat(), treasure_pos.lng()
-    marker = new google.maps.Marker
-      map: T21.map,
-      draggable: false,
-      animation: google.maps.Animation.DROP,
-      position: treasure_pos
-      html: '<h1>' + treasureJsonObject.name + '</h1><p>' + treasureJsonObject.description + '</p>';
+    if (treasureJsonObject.hyperlink == "")
+
+        marker = new google.maps.Marker
+          map: T21.map,
+          draggable: false,
+          animation: google.maps.Animation.DROP,
+          position: treasure_pos
+          html: '<h1>' + treasureJsonObject.name + '</h1><p>' + treasureJsonObject.description + '</p>';
+
+    else
+        marker = new google.maps.Marker
+          map: T21.map,
+          draggable: false,
+          animation: google.maps.Animation.DROP,
+          position: treasure_pos
+          html: '<a href="' + treasureJsonObject.hyperlink + '"><h1>' + treasureJsonObject.name + '</h1></a><p>' + treasureJsonObject.description + '</p>';
 
     infowindow = new google.maps.InfoWindow
 
