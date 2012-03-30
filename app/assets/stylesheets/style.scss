@@ -30,7 +30,7 @@ body, select, input, textarea {
 #footer{clear:both;width:100%}
 
 /* Fluid Layout Styles */
-#header{height:90px; background: hsla(207, 45%, 55%, 1)}
+#header{height:90px; background: white}
 #map_canvas p{line-height:1.4}
 #map_canvas h1{font-size: 18pt;}
 #sidebar{background:#FFF}
@@ -97,7 +97,7 @@ body, select, input, textarea {
   padding-top: 15px;
   width: 928px;
   margin: auto;
-  color: white;
+  color: #006bb7;
 }
 
 .header_buttons{

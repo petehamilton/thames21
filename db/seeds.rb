@@ -286,4 +286,9 @@ Nigel Walley', :hyperlink => '', :lng => -0.2275869192366405, :lat => 51.4883763
 
 
 # puts treasures[0].inspect
-Treasure.create(treasures)
+treasures.each do |t|
+  if !t.nil?
+    t[:name] = t[:name].split(" ").map{ |x| x.capitalize}.join(" ")
+    Treasure.create(t)
+  end
+end
