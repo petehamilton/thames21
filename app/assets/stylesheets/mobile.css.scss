@@ -350,6 +350,10 @@ a {
   min-width: 350px;
 }
 
+
+#mobile_nav li{
+  /*height: 100%;*/
+}
 .scrollable{
   display: block;
   padding: 12px 10px;
@@ -358,6 +362,7 @@ a {
   border-right: 3px solid #fff;
   color: #fff;
   text-decoration: none;
+  /*height: 100%;*/
   
   &:hover{
     text-decoration: none;
