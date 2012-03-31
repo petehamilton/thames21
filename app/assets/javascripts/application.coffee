@@ -53,10 +53,11 @@ T21.parseTreasureJSON = (treasureJsonObjects, map = T21.map) ->
     treasure_pos = new google.maps.LatLng(treasureJsonObject.lat, treasureJsonObject.lng);
     # log T21.location.lat(), T21.location.lng(), treasure_pos.lat(), treasure_pos.lng()
     
+    rand = Math.floor(Math.random()*2) + 1
     if (treasureJsonObject.hyperlink == "")
-      html = '<h1>' + treasureJsonObject.name + '</h1><p>' + treasureJsonObject.description + '</p>';
+      html = '<div class="infobox"><h1>' + treasureJsonObject.name + '</h1><p><img class="info_img" src="/assets/thames/thames_' + rand + '.jpg" />' + treasureJsonObject.description + '</p></div>';
     else
-      html = '<a href="' + treasureJsonObject.hyperlink + '"><h1>' + treasureJsonObject.name + '</h1></a><p>' + treasureJsonObject.description + '</p>';
+      html = '<div class="infobox"><a href="' + treasureJsonObject.hyperlink + '"><h1>' + treasureJsonObject.name + '</h1></a><p><img class="info_img" src="/assets/thames/thames_' + rand + '.jpg" />' + treasureJsonObject.description + '</p></div>';
     
     marker = new google.maps.Marker
       map: T21.map,

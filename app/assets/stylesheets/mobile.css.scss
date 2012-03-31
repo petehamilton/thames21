@@ -1,7 +1,6 @@
-#= require css3buttons
-#= require_self
+#= require bootstrap
 #= require facebox
-#= require html5-boilerplate
+#= require_self
 
 /* Core styles for body/containers */
 html { height: 100% }
@@ -336,4 +335,17 @@ a {
     text-align: center;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+.mobile{
+  .info_img{
+    float:right;
+    padding: 5px;
+    border: 1px solid #CCC;
+    margin-left: 10px;
+  }
+}
+
+.infobox{
+  min-width: 350px;
 }

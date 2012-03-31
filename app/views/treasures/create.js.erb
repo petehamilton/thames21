@@ -2,13 +2,12 @@
 T21.infowindow.close()
 T21.newmarker.setMap(null)
 
-
+var rand = Math.floor(Math.random()*2) + 1
 <% if @treasure.hyperlink == "" %>
-  html = '<h1><%= @treasure.name %></h1><p><%= @treasure.description %></p>';
+  html = '<div class="infobox"><h1><%= @treasure.name %></h1><p><%= @treasure.description %><img class="info_img" src="/assets/thames/thames_' + rand + '.jpg" /></p></div>';
 <% else %>
-  html = '<a href="<%= @treasure.hyperlink %>"><h1><%= @treasure.name %></h1></a><p><%= @treasure.description %></p>';
+  html = '<div class="infobox"><a href="<%= @treasure.hyperlink %>"><h1><%= @treasure.name %></h1></a><p><%= @treasure.description %><img class="info_img" src="/assets/thames/thames_' + rand + '.jpg" /></p></div>';
 <% end %>
-
 
 var treasure_pos = new google.maps.LatLng(<%= @treasure.lat %>, <%= @treasure.lng %>);
 var marker = new google.maps.Marker({
