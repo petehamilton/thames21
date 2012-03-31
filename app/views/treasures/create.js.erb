@@ -2,7 +2,7 @@
 T21.infowindow.close()
 T21.newmarker.setMap(null)
 
-var rand = Math.floor(Math.random()*2) + 1
+var rand = Math.floor(Math.random()*3) + 1
 <% if @treasure.hyperlink == "" %>
   html = '<div class="infobox"><h1><%= @treasure.name %></h1><p><%= @treasure.description %><img class="info_img" src="/assets/thames/thames_' + rand + '.jpg" /></p></div>';
 <% else %>
