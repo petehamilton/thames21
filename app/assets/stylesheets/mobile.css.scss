@@ -4,7 +4,7 @@
 
 /* Core styles for body/containers */
 html { height: 100% }
-body { height: 400%; margin: 0; padding: 0 }
+body { height: 400%; margin: 0; padding: 0; background-color: #e6e6e6; }
 #container{ width: 100%; height: 100%; position: relative}
 #main{ width: 100%; height: 100%; position: relative;}
 #wrapper{ width: 100%; height: 100%; position: relative}
@@ -370,4 +370,13 @@ a {
     background-color: #ccc;
     color: #444;
   };
+}
+
+.fimg{
+  width: 360px;
+}
+
+.logomobile{
+  margin-left:67px;
+  margin-top: 80px;
 }
