@@ -4,7 +4,7 @@
 
 /* Core styles for body/containers */
 html { height: 100% }
-body { height: 100%; margin: 0; padding: 0 }
+body { height: auto; margin: 0; padding: 0 }
 #container{ width: 100%; height: 100%; position: relative}
 #main{ width: 100%; height: 100%; position: relative;}
 #wrapper{ width: 100%; height: 100%; position: relative}
@@ -32,7 +32,7 @@ a {
 
 /* Fluid Layout */
 #wrapper{float:left;width:100%;}
-#map_canvas{float:left;width:100%;height:400px}
+#map_canvas{float:left;width:100%;height:560px}
 #sidebar{float:right;width:300px;margin: 0;}
 #footer{clear:both;width:100%}
 
@@ -53,12 +53,12 @@ a {
 
 #lower_section{width:100%; height:100%; box-shadow: 0px -3px 4px #888; margin-top:3px; float: left;}
 
-#lower_content{width:928px; height:100%; margin:auto;}
+#lower_content{width:928px; height:100%; margin:auto; padding-top:10px;}
 
-#header_nav{float: left; height:100%; width:650px; list-style-type: none; margin:0; margin-top:125px;}
-#header_nav li{width: 33%; height:auto; display: block; float:left; line-height: 100%; font-size: 14pt; text-align:center;}
+#header_nav{float: left; height:100%; width:600px; list-style: none; margin:0; margin-top:125px;}
+#header_nav li{font-size: 22pt; width: 33%; height:auto; display: block; float:left; line-height: 100%; text-align:center;}
 
-#add_treasure_btn{float: left;width: 369px; height:84px; background-image: url(../assets/create_a_post.png); background-repeat: none;}
+#add_treasure_btn{float: left;width: 369px; height:84px; background-image: url(../assets/create_a_post.png); background-repeat: no-repeat;}
 
 /* Buttons */
 .button {
