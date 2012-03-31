@@ -83,11 +83,11 @@ resizeContentToWindow = ->
   $('#main').height($(window).height() - 80)
 
 setupGoogleMap = ->
-  central_london = new google.maps.LatLng(51.485766, -0.136814)
+  central_london = new google.maps.LatLng(51.50243858499476, -0.07020938574214375)
   T21.location = central_london
 
   opts =
-    zoom: 13
+    zoom: 14
     center: T21.location
     mapTypeId: google.maps.MapTypeId.ROADMAP
 
@@ -95,7 +95,7 @@ setupGoogleMap = ->
 
   google.maps.event.addListener T21.map, 'center_changed', () ->
     T21.location = T21.map.getCenter()
-  #   # log T21.location.lat(), T21.location.lng()
+    log T21.location.lat(), T21.location.lng()
   #
   #   $.doTimeout 't21_treasures_load', 1000, () ->
   #     alert "Should have loaded once"

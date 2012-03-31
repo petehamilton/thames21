@@ -21,5 +21,4 @@ class TreasuresController < ApplicationController
       format.json  { render :json => @treasures }
     end
   end
-
 end
