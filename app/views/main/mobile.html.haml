@@ -1,0 +1,15 @@
+#verify_location_container{:style => "display: none"}
+  #verify_location
+    %p Please verify the below location:
+    .clear
+    #verify_location_button_yes.button.positive Verify!
+    #verify_location_button_no.button.negative Incorrect
+#postcode_form_container{:style => "display: none"}
+  #postcode_form
+    %p Please enter your postcode:
+    .clear
+    %input#postcode_text{:type => 'text', :size => 10, :value => 'SW6 1SH'}
+    #postcode_button_submit.button.positive Find Me!
+
+#wrapper
+  #map_canvas{:style => "width:100%; height:100%"}
