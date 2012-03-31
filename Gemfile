@@ -53,7 +53,7 @@ end
 # Use JQuery not prototype
 gem 'jquery-rails'
 
-gem 'css3buttons'
+# gem 'css3buttons'
 
 # Make web-editing smoother
 gem "haml"
