@@ -1,0 +1,25 @@
+
+T21.infowindow.close()
+T21.newmarker.setMap(null)
+
+
+<% if @treasure.hyperlink == "" %>
+  html = '<h1><%= @treasure.name %></h1><p><%= @treasure.description %></p>';
+<% else %>
+  html = '<a href="<%= @treasure.hyperlink %>"><h1><%= @treasure.name %></h1></a><p><%= @treasure.description %></p>';
+<% end %>
+
+
+var treasure_pos = new google.maps.LatLng(<%= @treasure.lat %>, <%= @treasure.lng %>);
+var marker = new google.maps.Marker({
+  map: T21.map,
+  draggable: false,
+  animation: google.maps.Animation.DROP,
+  position: treasure_pos,
+  html: html
+});
+
+google.maps.event.addListener(marker, 'click', function(){
+  T21.infowindow.setContent(this.html);
+  T21.infowindow.open(T21.map, this);
+});

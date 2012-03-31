@@ -21,4 +21,22 @@ class TreasuresController < ApplicationController
       format.json  { render :json => @treasures }
     end
   end
+
+  def new
+    @treasure = Treasure.new
+    @treasure.lat = params[:lat]
+    @treasure.lng = params[:lng]
+    @test = "ABCDEFG"
+    
+    render :layout => false
+  end
+
+  def create
+    @treasure = Treasure.new(params[:treasure])
+    @treasure.save
+
+    respond_to do |format|
+      format.js
+    end
+  end
 end

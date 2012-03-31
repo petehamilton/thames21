@@ -4,6 +4,7 @@
 #= require log_plugin
 #= require dotimeout_plugin
 #= require facebox
+# require bootstrap
 
 #= require _helpers
 
@@ -51,33 +52,22 @@ T21.parseTreasureJSON = (treasureJsonObjects, map = T21.map) ->
 
     treasure_pos = new google.maps.LatLng(treasureJsonObject.lat, treasureJsonObject.lng);
     # log T21.location.lat(), T21.location.lng(), treasure_pos.lat(), treasure_pos.lng()
+    
     if (treasureJsonObject.hyperlink == "")
-
-        marker = new google.maps.Marker
-          map: T21.map,
-          draggable: false,
-          animation: google.maps.Animation.DROP,
-          position: treasure_pos
-          html: '<h1>' + treasureJsonObject.name + '</h1><p>' + treasureJsonObject.description + '</p>';
-
+      html = '<h1>' + treasureJsonObject.name + '</h1><p>' + treasureJsonObject.description + '</p>';
     else
-        marker = new google.maps.Marker
-          map: T21.map,
-          draggable: false,
-          animation: google.maps.Animation.DROP,
-          position: treasure_pos
-          html: '<a href="' + treasureJsonObject.hyperlink + '"><h1>' + treasureJsonObject.name + '</h1></a><p>' + treasureJsonObject.description + '</p>';
-
-    infowindow = new google.maps.InfoWindow
-
-    # T21.markers.push marker
-    # log T21.markers[T21.markers.length - 1]
-    # T21.info_windows.push infowindow
-    # log T21.info_windows[T21.info_windows.length - 1]
+      html = '<a href="' + treasureJsonObject.hyperlink + '"><h1>' + treasureJsonObject.name + '</h1></a><p>' + treasureJsonObject.description + '</p>';
+    
+    marker = new google.maps.Marker
+      map: T21.map,
+      draggable: false,
+      animation: google.maps.Animation.DROP,
+      position: treasure_pos
+      html: html
 
     google.maps.event.addListener marker, 'click', () ->
-      infowindow.setContent(this.html);
-      infowindow.open(T21.map, this);
+      T21.infowindow.setContent(this.html);
+      T21.infowindow.open(T21.map, this);
 
 resizeContentToWindow = ->
   $('#main').height($(window).height() - 80)
@@ -95,11 +85,51 @@ setupGoogleMap = ->
 
   google.maps.event.addListener T21.map, 'center_changed', () ->
     T21.location = T21.map.getCenter()
-    log T21.location.lat(), T21.location.lng()
-  #
-  #   $.doTimeout 't21_treasures_load', 1000, () ->
-  #     alert "Should have loaded once"
-  #     T21.loadTreasures()
+
+bindButtons = ->
+  $(".scrollable").bind "click", () ->
+    window.location.hash = $(this).attr("href");
+	  return false
+  $("#add_treasure_btn").click () ->
+    # $.facebox({ ajax: '/treasures/new' })
+    addNewTreasureMarker()
+  
+  $('.save_form').live 'click', () ->
+    
+    form = $(this).parents('form:first')
+    data = $(form).serialize()
+    url = $(form).attr 'action'
+    method = $(form).attr 'method'
+    
+    data += "&_method=" + method
+    $.post url, data, null, 'script'
+    
+    return false;
+
+addNewTreasureMarker = ->
+  c = T21.map.getCenter()
+  T21.newmarker = new google.maps.Marker
+    map:T21.map
+    draggable:true
+    animation: google.maps.Animation.DROP
+    position: c
+    icon: "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png"
+  
+  
+  $.get '/treasures/new', {lat: c.lat(), lng: c.lng()}, (data) ->
+    T21.infowindow.setContent(data)
+    T21.infowindow.open(T21.map, T21.newmarker)
+  
+  google.maps.event.addListener T21.newmarker, 'click', () ->
+    if marker.getAnimation() != null
+      marker.setAnimation null
+    else
+      marker.setAnimation google.maps.Animation.BOUNCE
+  
+  google.maps.event.addListener T21.newmarker, 'dragend', () ->
+    center = T21.newmarker.getPosition()
+    $("#treasure_lat").val(center.lat())
+    $("#treasure_lng").val(center.lng())
 
 $(document).ready ->
   if !$(".mobile")
@@ -107,8 +137,8 @@ $(document).ready ->
     $(window).resize resizeContentToWindow
   setupFacebox()
   setupGoogleMap()
+  T21.infowindow = new google.maps.InfoWindow
   T21.location = T21.map.getCenter()
   T21.loadTreasures()
-	$(".scrollable").bind "click", () ->
-    window.location.hash = $(this).attr("href");
-	  return false
+  bindButtons()
+
