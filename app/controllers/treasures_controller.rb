@@ -23,8 +23,12 @@ class TreasuresController < ApplicationController
   end
 
   def new
-    render :layout => false
     @treasure = Treasure.new
+    @treasure.lat = params[:lat]
+    @treasure.lng = params[:lng]
+    @test = "ABCDEFG"
+    
+    render :layout => false
   end
 
   def create

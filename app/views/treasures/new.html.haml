@@ -1,6 +1,5 @@
 %h1
   New Treasure
-
 %form.well.form-horizontal{:remote => true, :action => "/treasures", :method => "POST"}
   %fieldset
     = text_field_tag "treasure[name]", nil, :placeholder => "Name it"
@@ -9,7 +8,7 @@
     %br
     = text_field_tag "treasure[hyperlink]", nil, :placeholder => "Link?"
     %br
-    = hidden_field_tag "treasure[lat]"
-    = hidden_field_tag "treasure[lng]"
+    = hidden_field_tag "treasure[lat]", @treasure.lat
+    = hidden_field_tag "treasure[lng]", @treasure.lng
   %br
   .btn.save_form{:href => "/treasures/create"} Add

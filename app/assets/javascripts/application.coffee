@@ -105,7 +105,6 @@ bindButtons = ->
 
 addNewTreasureMarker = ->
   c = T21.map.getCenter()
-  
   T21.newmarker = new google.maps.Marker
     map:T21.map
     draggable:true
@@ -114,7 +113,7 @@ addNewTreasureMarker = ->
     icon: "http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png"
   
   
-  $.get '/treasures/new', (data) ->
+  $.get '/treasures/new', {lat: c.lat(), lng: c.lng()}, (data) ->
     T21.infowindow.setContent(data)
     T21.infowindow.open(T21.map, T21.newmarker)
   
@@ -128,9 +127,6 @@ addNewTreasureMarker = ->
     center = T21.newmarker.getPosition()
     $("#treasure_lat").val(center.lat())
     $("#treasure_lng").val(center.lng())
-  
-  $("#treasure_lat").val(c.lat())
-  $("#treasure_lng").val(c.lng())
 
 $(document).ready ->
   resizeContentToWindow()
