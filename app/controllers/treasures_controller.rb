@@ -21,4 +21,18 @@ class TreasuresController < ApplicationController
       format.json  { render :json => @treasures }
     end
   end
+
+  def new
+    render :layout => false
+    @treasure = Treasure.new
+  end
+
+  def create
+    @treasure = Treasure.new(params[:treasure])
+    @treasure.save
+
+    respond_to do |format|
+      format.js
+    end
+  end
 end
