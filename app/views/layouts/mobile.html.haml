@@ -6,7 +6,15 @@
   %body{ :class => "#{controller.controller_name}" }
     #container
       %header#header
-        = render "layouts/header"
+        %ul#mobile_nav
+          %li
+            %a.scrollable{href: "#"}Home
+          %li
+            %a.scrollable{href: "#map"}Map
+          %li
+            %a.scrollable{href: "#events"}Events
+          %li
+            %a.scrollable{href: "#account"}My A/C
 
       #main.mobile{ :role => 'main' }
         = render "layouts/flashes"

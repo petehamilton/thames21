@@ -102,9 +102,13 @@ setupGoogleMap = ->
   #     T21.loadTreasures()
 
 $(document).ready ->
-  resizeContentToWindow()
-  $(window).resize resizeContentToWindow
+  if !$(".mobile")
+    resizeContentToWindow()
+    $(window).resize resizeContentToWindow
   setupFacebox()
   setupGoogleMap()
   T21.location = T21.map.getCenter()
   T21.loadTreasures()
+	$(".scrollable").bind "click", () ->
+    window.location.hash = $(this).attr("href");
+	  return false
